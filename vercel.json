@@ -1,34 +1,16 @@
 {
     "version": 2,
-    "builds": [
-      {
-        "src": "package.json",
-        "use": "@vercel/static-build",
-        "config": {
-          "distDir": "dist"
-        }
-      }
-    ],
-    "routes": [
-      {
-        "src": "/api/survey/([^/]+)",
-        "dest": "/api/survey/$1"
-      },
-      {
-        "src": "/api/(.*)",
-        "dest": "/api/$1"
-      },
-      {
-        "handle": "filesystem"
-      },
-      {
-        "src": "/(.*)",
-        "dest": "/index.html"
-      }
-    ],
     "rewrites": [
       {
-        "source": "/(.*)",
+        "source": "/api/survey/:id",
+        "destination": "/api/survey/[id]"
+      },
+      {
+        "source": "/api/:path*",
+        "destination": "/api/:path*"
+      },
+      {
+        "source": "/:path*",
         "destination": "/index.html"
       }
     ]
